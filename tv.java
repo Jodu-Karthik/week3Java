@@ -3,28 +3,28 @@ import java.util.*;
 class Tv
 {
     int channel,volumeLevel;
-    boolean on;
+    String on;
     
     Tv()
     {
         this.channel=1;
         this.volumeLevel=1;
-        this.on=false;
+        this.on="No";
     }
     
     void turnOn()
     {
-        this.on=true; 
+        this.on="Yes"; 
     }
     
     void turnOff()
     {
-        this.on=false;
+        this.on="No";
     }
     
     void setChannel(int newChannel)
     {
-        if(this.on==false) 
+        if(this.on=="No") 
         {
             System.out.println("You cannot Set Channel when Tv is off");
         }
@@ -46,7 +46,7 @@ class Tv
     
     void setVolume(int newVolume)
     {
-        if(this.on==false) 
+        if(this.on=="No") 
         {
             System.out.println("You cannot Set volume when Tv is off");
         }
@@ -68,19 +68,12 @@ class Tv
     
     void channelUp()
     {
-        if(this.on==false) 
-        {
-            System.out.println("You cannot Increase Channel when Tv is off");
-        }
-        else this.channel+=1;
+        setChannel(this.channel+=1);
     }
     
     void channelDown()
     {
-        if(this.on==false) 
-        {
-            System.out.println("You cannot Decrease Channel when Tv is off");
-        else this.channel-=1;
+        setChannel(this.channel-=1);
     }
     
     void volumeUp()
@@ -90,7 +83,7 @@ class Tv
     
     void volumeDown()
     {
-        setVolume(volumeLevel-=1);
+        setVolume(this.volumeLevel-=1);
     } 
     
     void getStatus()
@@ -106,17 +99,31 @@ class TestTv
     public static void main(String args[])
     {
         Tv t1=new Tv();
-        System.out.println(t1.on);
+        t1.getStatus();
+        //System.out.println(t1.on);
         
         t1.turnOn();
-        System.out.println(t1.on);
+        t1.getStatus();
+        //System.out.println(t1.on);
         
         t1.setChannel(45);
-        System.out.println(t1.channel);
+        t1.getStatus();
+        //System.out.println(t1.channel);
         
         t1.setVolume(8);
-        System.out.println(t1.volumeLevel);
+        t1.getStatus();
+        //System.out.println(t1.volumeLevel);
         
+        t1.channelUp();
+        t1.getStatus();
         
+        t1.channelDown();
+        t1.getStatus();
+        
+        t1.volumeUp();
+        t1.getStatus();
+        
+        t1.volumeDown();
+        t1.getStatus();
     }
 };
